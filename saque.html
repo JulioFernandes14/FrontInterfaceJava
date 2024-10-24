@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/header.css">
+    <link rel="stylesheet" href="assets/saque.css">
+    <title>SI Bank - Saque</title>
+</head>
+<body>
+
+    <header>
+        <div class="cliente">
+            <img src="assets/icon_perfil.png" alt="Icone de perfil">
+            <h1>Júlio Fernandes</h1>
+        </div>
+
+        <div class="box-saldo">
+            <span class="saldo">Saldo: R$</span>
+            <span>100,20</span>
+        </div>
+    </header>
+
+    <main>
+
+        <h2>Digite o valor para saque</h2>
+
+        <form class="row">
+            <div class="col-12 campo-valor">
+                <div class="col-9 valor row">
+                    <span class="moeda col-2">R$</span>
+                    <input id="valorSaque" type="text" disabled value="0,00" class="col-10">
+                </div>
+            </div>
+
+            <div class="teclado col-12 row">
+                
+                <div class="col-3"><div class="numero" onclick="adicionarNumero(1)">1</div></div>
+                <div class="col-3"><div class="numero" onclick="adicionarNumero(2)">2</div></div>
+                <div class="col-3"><div class="numero" onclick="adicionarNumero(3)">3</div></div>
+                <div class="col-3"><button type="button" class="acao">Cancelar <img src="assets/icon_cancelar.png" alt=""></button></div>
+
+                <div class="col-3"><div class="numero" onclick="adicionarNumero(4)">4</div></div>
+                <div class="col-3"><div class="numero" onclick="adicionarNumero(5)">5</div></div>
+                <div class="col-3"><div class="numero" onclick="adicionarNumero(6)">6</div></div>
+                <div class="col-3"><button type="button" class="acao" onclick="limparValor()">Limpar <img src="assets/icon_limpar.png" alt=""></button></div>
+
+                <div class="col-3"><div class="numero" onclick="adicionarNumero(7)">7</div></div>
+                <div class="col-3"><div class="numero" onclick="adicionarNumero(8)">8</div></div>
+                <div class="col-3"><div class="numero" onclick="adicionarNumero(9)">9</div></div>
+                <div class="col-3"><button type="submit" class="acao">Confirmar <img src="assets/icon_confirmar.png" alt=""></button></div>
+
+                <div class="col-3"><div class="numero" onclick="adicionarNumero(0)">0</div></div>
+            </div>
+        </form>
+
+    </main>
+
+    <script>
+        let valorAtual = '';
+
+        function adicionarNumero(numero) {
+            valorAtual += numero.toString();
+            atualizarValor();
+        }
+
+        function atualizarValor() {
+            
+            valorAtual = valorAtual.replace(/^0+/, '');
+            
+            
+            let valorFormatado = (parseInt(valorAtual) / 100).toFixed(2).replace('.', ',');
+            
+            
+            document.getElementById('valorSaque').value = valorFormatado;
+        }
+
+        function limparValor() {
+            valorAtual = '';
+            document.getElementById('valorSaque').value = '0,00';
+        }
+
+    </script>
+
+</body>
+</html>
