@@ -58,17 +58,21 @@
     </main>
 
     <script>
-        let valorAtual = '';
+        let valorAtual = '0';
 
         function adicionarNumero(numero) {
-            valorAtual += numero.toString();
+            
+            if (valorAtual==='0') {
+                valorAtual = numero.toString();
+            }else {
+                valorAtual +=numero.toString();
+            }
+
             atualizarValor();
+
         }
 
         function atualizarValor() {
-            
-            valorAtual = valorAtual.replace(/^0+/, '');
-            
             
             let valorFormatado = (parseInt(valorAtual) / 100).toFixed(2).replace('.', ',');
             
@@ -77,7 +81,7 @@
         }
 
         function limparValor() {
-            valorAtual = '';
+            valorAtual = '0';
             document.getElementById('valorSaque').value = '0,00';
         }
 
